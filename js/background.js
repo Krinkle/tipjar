@@ -7,7 +7,23 @@ function createPopup(tab, url, source, siteHostname) {
 
 // Function for checking new pages for donate links
 chrome.runtime.onMessage.addListener(function (message) {
-    if (Object.keys(message).length === 0) {
+    if (message.hasOwnProperty('url')) {
+        // The page had the <meta> tag
+        console.log('Found donate tag on page:', message['url'])
+        chrome.tabs.query({ active: true, lastFocusedWindow: true }, function (tabs) {
+            var url = new URL(tabs[0].url)
+            var hostname = url.hostname.toString()
+            createPopup(tabs[0], message['url'], 'web', hostname)
+        })
+    } else if (message.hasOwnProperty('scroll')) {
+        // The site supports Scroll
+        console.log('Found Scroll support on page:', message['url'])
+        chrome.tabs.query({ active: true, lastFocusedWindow: true }, function (tabs) {
+            var url = new URL(tabs[0].url)
+            var hostname = url.hostname.toString()
+            createPopup(tabs[0], message['scroll'], 'scroll', hostname)
+        })
+    } else if (Object.keys(message).length === 0) {
         // The page didn't have a <meta> tag, so check the list
         chrome.tabs.query({ active: true, lastFocusedWindow: true }, function (tabs) {
             var url = new URL(tabs[0].url)
@@ -17,14 +33,6 @@ chrome.runtime.onMessage.addListener(function (message) {
                 console.log('Found site in database:', sitesObj[hostname])
                 createPopup(tabs[0], sitesObj[hostname], 'list', hostname)
             }
-        })
-    } else if (message.hasOwnProperty('url')) {
-        // The page had the <meta> tag
-        console.log('Found donate tag on page:', message['url'])
-        chrome.tabs.query({ active: true, lastFocusedWindow: true }, function (tabs) {
-            var url = new URL(tabs[0].url)
-            var hostname = url.hostname.toString()
-            createPopup(tabs[0], message['url'], 'web', hostname)
         })
     }
 })
