@@ -19,8 +19,8 @@
 	},
 	"page_action": {
 		"default_icon": {
-			"32": "img/pageaction-32.png",
-			"64": "img/pageaction-64.png"
+			"32": "img/pageaction-greyscale-32.png",
+			"64": "img/pageaction-greyscale-64.png"
 		},
 		"default_title": "Donate to this site"
 	},

@@ -1,4 +1,6 @@
 const sitesObj = {
+    "archive.org": "https://archive.org/donate/",
+    "commons.wikimedia.org": "https://donate.wikimedia.org/",
     "developer.mozilla.org": "https://donate.mozilla.org/",
     "download.lineageos.org": "https://www.lineageos.org/about/",
     "f-droid.org": "https://f-droid.org/en/donate/",
@@ -7,11 +9,16 @@ const sitesObj = {
     "inkscape.org": "https://inkscape.org/support-us/donate/",
     "joinmastodon.org": "https://www.patreon.com/mastodon",
     "krita.org": "https://krita.org/en/support-us/donations/",
+    "meta.wikimedia.org": "https://donate.wikimedia.org/",
     "monitor.firefox.com": "https://donate.mozilla.org/",
     "obsproject.com": "https://obsproject.com/contribute",
     "send.firefox.com": "https://donate.mozilla.org/",
     "shotcut.org": "https://shotcut.org/download/",
+    "species.wikimedia.org": "https://donate.wikimedia.org/",
+    "web.archive.org": "https://archive.org/donate/",
     "wiki.lineageos.org": "https://www.lineageos.org/about/",
+    "wikimediafoundation.org": "https://donate.wikimedia.org/",
+    "wikisource.org": "https://donate.wikimedia.org/",
     "www.androidpolice.com": "https://www.androidpolice.com/subscribe-donate/",
     "www.archlinux.org": "https://www.archlinux.org/donate/",
     "www.audacityteam.org": "https://www.audacityteam.org/donate/",
@@ -23,12 +30,20 @@ const sitesObj = {
     "www.libretro.com": "https://www.patreon.com/libretro",
     "www.lineageos.org": "https://www.lineageos.org/about/",
     "www.linuxmint.com": "https://www.linuxmint.com/donors.php",
+    "www.mediawiki.org": "https://donate.wikimedia.org/",
     "www.mozilla.org": "https://donate.mozilla.org/",
     "www.retroarch.com": "http://www.retroarch.com/index.php?page=donate",
     "www.simplemobiletools.com": "https://www.simplemobiletools.com/donate/",
     "www.theguardian.com": "https://support.theguardian.com/contribute",
     "www.videolan.org": "https://www.videolan.org/contribute.html#money",
-    "www.wikipedia.org": "https://donate.wikimedia.org/wiki/Ways_to_Give"
+    "www.wikibooks.org": "https://donate.wikimedia.org/",
+    "www.wikidata.org": "https://donate.wikimedia.org/",
+    "www.wikinews.org": "https://donate.wikimedia.org/",
+    "www.wikipedia.org": "https://donate.wikimedia.org/",
+    "www.wikiquote.org": "https://donate.wikimedia.org/",
+    "www.wikiversity.org": "https://donate.wikimedia.org/",
+    "www.wikivoyage.org": "https://donate.wikimedia.org/",
+    "www.wiktionary.org": "https://donate.wikimedia.org/"
 }
 
 // Sort in VS Code: https://marketplace.visualstudio.com/items?itemName=richie5um2.vscode-sort-json
