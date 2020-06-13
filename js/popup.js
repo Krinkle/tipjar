@@ -2,7 +2,7 @@
 function generateLink(link) {
     var url = new URL(link)
     // This lets sites know that you found the donate link through Tipjar
-    url.searchParams.set('utm_source', 'Tipjar Browser Extension')
+    url.searchParams.set('utm_source', 'Tipjar Extension (github.com/corbindavenport/tipjar)')
     url.searchParams.set('utm_medium', 'Browser')
     url.searchParams.set('utm_campaign', 'None')
     return url.href
@@ -18,12 +18,21 @@ const siteHostname = params.get('hostname')
 var btn = document.createElement('button')
 if (source === 'scroll') {
     btn.textContent = 'Support with Scroll'
-} else {
+    var eventCategory = 'Donate Click (Scroll)'
+} else if (source === 'web') {
     btn.textContent = 'Donate'
+    var eventCategory = 'Donate Click (Meta Tag)'
+} else if (source === 'list') {
+    btn.textContent = 'Donate'
+    var eventCategory = 'Donate Click (Tipjar List)'
 }
 btn.addEventListener('click', function () {
-    ga('send', { hitType: 'event', eventAction: 'Donate click', eventLabel: siteHostname })
-    chrome.tabs.create({ url: generateLink(donateLink) })
+    ga('send', {
+        hitType: 'event',
+        eventCategory: eventCategory,
+        eventAction: siteHostname,
+        hitCallback: chrome.tabs.create({ url: generateLink(donateLink) })
+    })
 })
 document.body.appendChild(btn)
 
@@ -41,4 +50,6 @@ document.body.appendChild(caption)
 // Load Google Analytics
 window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date
 ga('create', 'UA-59452245-8', 'auto')
-ga('send', 'pageview')
+ga('set', 'checkProtocolTask', function(){}) // Removes failing protocol check: http://stackoverflow.com/a/22152353/1958200
+ga('require', 'displayfeatures')
+ga('send', 'pageview', 'popup.html')
