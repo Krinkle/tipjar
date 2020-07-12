@@ -27,11 +27,8 @@ chrome.runtime.onMessage.addListener(function (message) {
             createPopup(tabs[0], sitesObj[hostname], 'list', hostname)
         } else if (message.hasOwnProperty('scroll')) {
             // The site supports Scroll
-            chrome.tabs.query({ active: true, lastFocusedWindow: true }, function (tabs) {
-                var url = new URL(tabs[0].url)
-                var hostname = url.hostname.toString()
-                createPopup(tabs[0], message['scroll'], 'scroll', hostname)
-            })
+            var hostname = url.hostname.toString()
+            createPopup(tabs[0], 'https://scroll.com/', 'scroll', hostname)
         }
     })
 })
