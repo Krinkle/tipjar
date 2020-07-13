@@ -14,5 +14,5 @@ if (scrollJS) {
     supportLinks.scroll = true
 }
 
-// Send date
+// Send data to background.js
 chrome.runtime.sendMessage(supportLinks)

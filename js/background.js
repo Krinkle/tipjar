@@ -51,3 +51,20 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo) {
         }
     }
 })
+
+// Welcome page
+chrome.storage.local.get(function (data) {
+    if (data.version) {
+        if (!(data.version === chrome.runtime.getManifest().version)) {
+            chrome.tabs.create({ 'url': chrome.extension.getURL('welcome.html') })
+            chrome.storage.local.set({
+                version: chrome.runtime.getManifest().version
+            })
+        }
+    } else {
+        chrome.tabs.create({ 'url': chrome.extension.getURL('welcome.html') })
+        chrome.storage.local.set({
+            version: chrome.runtime.getManifest().version
+        })
+    }
+})

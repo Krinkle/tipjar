@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/png" href="img/icon48.png">
+	<title>Tipjar</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="jumbotron">
+		<div class="container">
+			<h1 class="display-4">Welcome to Tipjar <span class="version"></span>!</h1>
+			<p class="lead">Thanks for taking part in Tipjar's mission to create a healthy internet for everyone.</p>
+		</div>
+	</div>
+
+	<div class="container">
+
+		<div class="alert alert-warning chrome-icon-warning" style="display: block">
+			<b>Make sure the Tipjar extension button isn't hidden in Chrome's menu!</b> If you don't see it next to the address bar, open Chrome's window, right-click the Tipjar icon, and select 'Show in toolbar'.
+		</div>
+
+		<div class="row">
+			<div class="col-md-8">
+				<h2>How Tipjar works</h2>
+				<p>When the site you have open accepts direct contributions, you'll see a green money icon in your browser's toolbar. All you have to do is click it, and you'll be sent to the appropriate page. You can see it in action on <a href="https://corbin.io" target="_blank">corbin.io</a>.</p>
+				<p>Tipjar currently supports three different donation methods. If the site has a meta tag that links to a donation page, Tipjar will always use that first. If that isn't available, Tipjar will check its <a href="js/sites.js" target="_blank">internal list of sites</a> that support donations for a match.</p>
+				<p>Finally, if direct contributions are unavailable, Tipjar wil check if the site supports <a href="https://scroll.com/" target="_blank">Scroll</a>. Scroll is a subscription service that removes advertisements from supported websites and gives them a cut of your subscription cost instead — similar to how YouTube Premium works.</p>
+				<p><i>Tipjar uses Google Analytics to collect anonymous usage data. See the <a href="https://github.com/corbindavenport/tipjar/wiki/Privacy-Policy" target="_blank">privacy policy</a> for more information.</i></p>
+			</div>
+			<div class="col-md-4">
+				<h2>Donate</h2>
+				<p>If you find Tipjar useful, please donate to support continued development. It would mean a lot!</p>
+				<p>
+					<button type="button" class="btn btn-success btn-block link-btn" data-url="https://www.patreon.com/corbindavenport">Donate via Patreon</button>
+				</p>
+				<p>
+					<button type="button" class="btn btn-success btn-block link-btn" data-url="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=4SZVSMJKDS35J&lc=US&item_name=Tipjar%20Donation&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted">Donate via PayPal</button>
+				</p>
+				<p class="review-info"></p>
+				<h2>Having issues?</h2>
+				<p>If you find a bug, have a suggestion for a new feature, or know a website that supports direct donations, please <a href="https://github.com/corbindavenport/tipjar/issues" target="_blank">create an issue on the GitHub repository</a> or <a href="mailto:tipjar@fire.fundersclub.com?subject=Tipjar%20User%20Report">submit an issue via email</a>.</p>
+			</div>
+		</div>
+
+		<hr>
+
+		<footer>
+			<p>Tipjar uses code from <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a> and <a href="https://jquery.com/" target="_blank">jQuery</a>. You can find Tipjar's source code <a href="https://github.com/corbindavenport/tipjar" target="_blank">on GitHub</a>, under the GPLv3 license.</p>
+		</footer>
+
+	</div>
+
+	<script src="js/welcome.js"></script>
+	<script src="js/shared.js"></script>
+</body>
+
+</html>
