@@ -1,6 +1,6 @@
 // Function for generating the donate popup
-function createPopup(tab, url, source, siteHostname) {
-    var popupURL = 'popup.html?link=' + encodeURIComponent(url) + '&source=' + source + '&hostname=' + siteHostname
+function createPopup(tab, url, format, source) {
+    var popupURL = 'popup.html?link=' + encodeURIComponent(url) + '&format=' + format + '&source=' + source
     chrome.pageAction.setPopup({ tabId: tab.id, popup: popupURL })
     chrome.pageAction.setIcon({
         path: {
