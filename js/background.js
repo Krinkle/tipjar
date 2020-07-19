@@ -1,6 +1,6 @@
 // Function for generating the donate popup
-function createPopup(tab, url, format, source) {
-    var popupURL = 'popup.html?link=' + encodeURIComponent(url) + '&format=' + format + '&source=' + source
+function createPopup(tab, source, data) {
+    var popupURL = 'popup.html?&source=' + source + '&data=' + encodeURIComponent(JSON.stringify(data))
     chrome.pageAction.setPopup({ tabId: tab.id, popup: popupURL })
     chrome.pageAction.setIcon({
         path: {
@@ -19,16 +19,9 @@ chrome.runtime.onMessage.addListener(function (message) {
         var url = new URL(tabs[0].url)
         var hostname = url.hostname.toString()
         console.log('Recieved data from tab ' + tabs[0].id + ' (' + hostname + '):', message)
-        if (message.hasOwnProperty('supportUrl')) {
-            // The page has the <meta> tag
-            createPopup(tabs[0], message.supportUrl, 'web', hostname)
-        } else if (sitesObj.hasOwnProperty(hostname)) {
-            // The page is in the sites.js list
-            createPopup(tabs[0], sitesObj[hostname], 'list', hostname)
-        } else if (message.hasOwnProperty('scroll')) {
-            // The site supports Scroll
-            var hostname = url.hostname.toString()
-            createPopup(tabs[0], 'https://scroll.com/', 'scroll', hostname)
+        // If the object isn't empty, generate a popup
+        if (!(Object.keys(message).length === 0 && message.constructor === Object)) {
+            createPopup(tabs[0], hostname, message)
         }
     })
 })

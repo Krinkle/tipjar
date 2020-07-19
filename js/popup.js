@@ -10,37 +10,33 @@ function generateLink(link) {
 
 // Parse input
 const params = (new URL(document.location)).searchParams
-const donateLink = params.get('link')
-const format = params.get('format')
 const source = params.get('source')
+const pageData = JSON.parse(params.get('data'))
+console.log('Recieved data:', pageData)
 
-// Create button
-// Note: All variations of eventCategory need to be configured in Plausible analytics before they are tracked
-var btn = document.createElement('button')
-if (format === 'scroll') {
-    btn.textContent = 'Support with Scroll'
-    var eventCategory = 'Donate Click - Scroll'
-} else if (format === 'web') {
-    btn.textContent = 'Donate'
-    var eventCategory = 'Donate Click - Meta Tag'
-} else if (format === 'list') {
-    btn.textContent = 'Donate'
-    var eventCategory = 'Donate Click - Tipjar List'
-}
-btn.addEventListener('click', function () {
-    plausible(eventCategory, {
-        callback: chrome.tabs.create({ url: generateLink(donateLink) })
+// Display meta tag button if available, fallback to Tipjar list
+if (pageData.hasOwnProperty('supportUrl')) {
+    document.querySelector('#meta-btn-container button').addEventListener('click', function() {
+        plausible('Donate Click - Meta Tag', {
+            callback: chrome.tabs.create({ url: generateLink(pageData.supportUrl) })
+        })
     })
-})
-document.body.appendChild(btn)
-
-// Create text
-var caption = document.createElement('div')
-if (format === 'list') {
-    caption.textContent = 'Link provided by Tipjar'
-} else if (format === 'web') {
-    caption.textContent = 'Link provided by website'
-} else if (format === 'scroll') {
-    caption.textContent = 'Scroll code detected on page'
+    document.querySelector('#meta-btn-container').style.display = 'block'
+} else if (pageData.hasOwnProperty('tipjarUrl')) {
+    document.querySelector('#tipjar-btn-container button').addEventListener('click', function() {
+        plausible('Donate Click - Tipjar List', {
+            callback: chrome.tabs.create({ url: generateLink(pageData.tipjarUrl) })
+        })
+    })
+    document.querySelector('#tipjar-btn-container').style.display = 'block'
 }
-document.body.appendChild(caption)
+
+// Display Scroll button if available
+if (pageData.hasOwnProperty('scroll')) {
+    document.querySelector('#scroll-btn-container button').addEventListener('click', function() {
+        plausible('Donate Click - Scroll', {
+            callback: chrome.tabs.create({ url: generateLink('https://scroll.com/') })
+        })
+    })
+    document.querySelector('#scroll-btn-container').style.display = 'block'
+}

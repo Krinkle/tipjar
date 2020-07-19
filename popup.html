@@ -3,28 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <style>
         html, body {
             margin: 0;
-            width: 200px;
+            width: 250px;
         }
         body {
             font-family: Arial, Helvetica, sans-serif;
             padding: 5px;
         }
-        button {
-            width: calc(100% - 10px);
-            margin-bottom: 5px;
-        }
-        div {
-            font-size: 12px;
+        .text-muted-container {
             text-align: center;
-            font-style: italic;
+            margin-bottom: 5px;
         }
     </style>
 </head>
 <body>
+    <!-- Button for meta tag -->
+    <div id="meta-btn-container" style="display: none;">
+        <button type="button" class="btn btn-block btn-info">Support this site</button>
+        <div class="text-muted-container">
+            <small class="text-muted">Link provided by website</small>
+        </div>
+    </div>
+
+    <!-- Button for internal list -->
+    <div id="tipjar-btn-container" style="display: none;">
+        <button type="button" class="btn btn-block btn-info">Support this site</button>
+        <div class="text-muted-container">
+            <small class="text-muted">Link provided by Tipjar (<a href="https://github.com/corbindavenport/tipjar/wiki/Support-links-provided-by-Tipjar" target="_blank">what's this?</a>)</small>
+        </div>
+    </div>
+
+    <!-- Button for Scroll -->
+    <div id="scroll-btn-container" style="display: none;">
+        <button type="button" class="btn btn-block btn-info">Support with Scroll</button>
+        <div class="text-muted-container">
+            <small class="text-muted">Scroll code detected on page</small>
+        </div>
+    </div>
+
     <script async defer data-domain="tipjar.corbin.io" src="https://plausible.io/js/plausible.js"></script>
     <script src="js/popup.js"></script>
+
 </body>
 </html>
