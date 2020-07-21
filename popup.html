@@ -17,6 +17,16 @@
             text-align: center;
             margin-bottom: 5px;
         }
+        #crypto-currency {
+            font-weight: bold;
+        }
+        #crypto-currency, #crypto-qr {
+            text-align: center;
+        }
+        #crypto-address {
+            word-break: break-all;
+            font-size: 12px;
+        }
     </style>
 </head>
 <body>
@@ -44,7 +54,24 @@
         </div>
     </div>
 
+    <!-- Button for Cryptocurrency -->
+    <div id="crypto-btn-container" style="display: none;">
+        <button type="button" class="btn btn-block btn-info" data-toggle="collapse" data-target="#crypto-collapse">Support with Cryptocurrency</button>
+        <div class="text-muted-container">
+            <small class="text-muted">Data provided by website</small>
+        </div>
+        <div class="collapse" id="crypto-collapse">
+          <ul class="list-group">
+            <li class="list-group-item disabled" id="crypto-currency"></li>
+            <li class="list-group-item" id="crypto-address"></li>
+            <li class="list-group-item" id="crypto-qr"></li>
+          </ul>
+        </div>
+    </div>
+
     <script async defer data-domain="tipjar.corbin.io" src="https://plausible.io/js/plausible.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script src="js/popup.js"></script>
 
 </body>
