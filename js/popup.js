@@ -57,16 +57,20 @@ if (pageData.hasOwnProperty('crypto')) {
     if ((pageData.crypto.currency === 'BTC') || (pageData.crypto.currency === 'BITCOIN')) {
         // Bitcoin
         var walletLink = document.createElement('a')
-        walletLink.href = 'bitcoin:' + pageData.crypto.address
+        walletLink.href = '#'
         walletLink.innerText = pageData.crypto.address
-        walletLink.target = '_blank'
+        walletLink.addEventListener('click', function() {
+            chrome.tabs.create({ url: 'bitcoin:' + pageData.crypto.address })
+        })
         document.querySelector('#crypto-address').appendChild(walletLink)
     } else if ((pageData.crypto.currency === 'LTC') || (pageData.crypto.currency === 'LITECOIN')) {
         // Litecoin
         var walletLink = document.createElement('a')
-        walletLink.href = 'litecoin:' + pageData.crypto.address
+        walletLink.href = '#'
         walletLink.innerText = pageData.crypto.address
-        walletLink.target = '_blank'
+        walletLink.addEventListener('click', function() {
+            chrome.tabs.create({ url: 'litecoin:' + pageData.crypto.address })
+        })
         document.querySelector('#crypto-address').appendChild(walletLink)
     } else {
         // Other
@@ -74,7 +78,10 @@ if (pageData.hasOwnProperty('crypto')) {
     }
     // QR code
     var walletImgLink = document.createElement('a')
-    walletImgLink.href = 'https://chart.googleapis.com/chart?cht=qr&chl=' + pageData.crypto.address + '&choe=UTF-8&chs=500x500'
+    walletImgLink.href = '#'
+    walletImgLink.addEventListener('click', function() {
+        chrome.tabs.create({ url: 'https://chart.googleapis.com/chart?cht=qr&chl=' + pageData.crypto.address + '&choe=UTF-8&chs=500x500' })
+    })
     walletImgLink.innerText = 'Display QR code'
     walletImgLink.target = '_blank'
     document.querySelector('#crypto-qr').appendChild(walletImgLink)
@@ -89,6 +96,11 @@ if (pageData.hasOwnProperty('crypto')) {
     // Show the main crypto button
     document.querySelector('#crypto-btn-container').style.display = 'block'
 }
+
+// Misc links
+document.querySelector('#tipjar-list-info').addEventListener('click', function() {
+    chrome.tabs.create({ url: 'https://github.com/corbindavenport/tipjar/wiki/Support-links-provided-by-Tipjar' })
+})
 
 // Load Google Analytics
 window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date
