@@ -2,11 +2,9 @@
 
 ![Tipjar screenshot](https://i.imgur.com/VCAnm1X.png)
 
-Tipjar is a browser extension that makes it easy to directly donate to your favorite sites and creators. When the site you're visiting accepts direct donations, you'll get a money icon in your browser's toolbar. Just click it, and you'll be sent to the site's donation page.
+Tipjar is a browser extension that makes it easy to directly donate to your favorite sites and creators. When the site you have open accepts direct contributions, you'll see a green money icon in your browser's toolbar. All you have to do is click it, and you'll be sent to the appropriate page. You can see it in action on [corbin.io](https://corbin.io).
 
-Tipjar checks the current page for a [meta tag](https://github.com/corbindavenport/tipjar/wiki/How-to-add-the-Tipjar-button-to-your-website) with a donation link. If there is no tag, Tipjar will check [a curated list](https://github.com/corbindavenport/tipjar/blob/master/js/sites.js) that links websites with their respective donation pages. Tipjar can also check if the given website can be supported through [Scroll](https://scroll.com/), and offer a link to learn more.
-
-See Tipjar analytics data: https://plausible.io/tipjar.corbin.io
+Tipjar looks for [code in the page's header](https://github.com/corbindavenport/tipjar/wiki/How-to-add-the-Tipjar-button-to-your-website) that links to a donation/support page. If one isn't found, the extension will check its [internal list of sites](https://github.com/corbindavenport/tipjar/blob/master/js/sites.js) for an available option. Tipjar can also detect a variety of other payment options (cryptocurrency, [Scroll](https://scroll.com/), etc.), and will display buttons for them if available.
 
 **Please submit sites that support direct donations to [tipjar@fire.fundersclub.com](mailto:tipjar@fire.fundersclub.com)!**
 

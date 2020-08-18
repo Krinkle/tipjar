@@ -1,6 +1,3 @@
-// Load Plausible Analytics
-window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }
-
 // Function for generating donate link with tracking attributes
 function generateLink(link) {
     var url = new URL(link)
@@ -19,15 +16,21 @@ console.log('Recieved data:', pageData)
 // Display meta tag button if available, fallback to Tipjar list
 if (pageData.hasOwnProperty('supportUrl')) {
     document.querySelector('#meta-btn-container button').addEventListener('click', function() {
-        plausible('Meta Tag Button', {
-            callback: chrome.tabs.create({ url: generateLink(pageData.supportUrl) })
+        ga('send', {
+            hitType: 'event',
+            eventCategory: 'Metatag Button Click',
+            eventAction: source,
+            hitCallback: chrome.tabs.create({ url: generateLink(pageData.supportUrl) })
         })
     })
     document.querySelector('#meta-btn-container').style.display = 'block'
 } else if (pageData.hasOwnProperty('tipjarUrl')) {
     document.querySelector('#tipjar-btn-container button').addEventListener('click', function() {
-        plausible('Tipjar List Button', {
-            callback: chrome.tabs.create({ url: generateLink(pageData.tipjarUrl) })
+        ga('send', {
+            hitType: 'event',
+            eventCategory: 'Internal Button Click',
+            eventAction: source,
+            hitCallback: chrome.tabs.create({ url: generateLink(pageData.tipjarUrl) })
         })
     })
     document.querySelector('#tipjar-btn-container').style.display = 'block'
@@ -36,8 +39,11 @@ if (pageData.hasOwnProperty('supportUrl')) {
 // Display Scroll button if available
 if (pageData.hasOwnProperty('scroll')) {
     document.querySelector('#scroll-btn-container button').addEventListener('click', function() {
-        plausible('Scroll Button', {
-            callback: chrome.tabs.create({ url: generateLink('https://scroll.com/') })
+        ga('send', {
+            hitType: 'event',
+            eventCategory: 'Scroll Button Click',
+            eventAction: source,
+            hitCallback: chrome.tabs.create({ url: generateLink('https://scroll.com/') })
         })
     })
     document.querySelector('#scroll-btn-container').style.display = 'block'
@@ -74,8 +80,19 @@ if (pageData.hasOwnProperty('crypto')) {
     document.querySelector('#crypto-qr').appendChild(walletImgLink)
     // Add click event for crypto button
     document.querySelector('#crypto-btn-container button').addEventListener('click', function() {
-        plausible('Cryptocurrency Button')
+        ga('send', {
+            hitType: 'event',
+            eventCategory: 'Crypto Button Click',
+            eventAction: source
+        })
     })
     // Show the main crypto button
     document.querySelector('#crypto-btn-container').style.display = 'block'
 }
+
+// Load Google Analytics
+window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date
+ga('create', 'UA-59452245-8', 'auto')
+ga('set', 'checkProtocolTask', function(){}) // Removes failing protocol check: http://stackoverflow.com/a/22152353/1958200
+ga('require', 'displayfeatures')
+ga('send', 'pageview', 'popup.html') 
