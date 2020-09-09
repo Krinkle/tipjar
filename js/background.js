@@ -1,3 +1,11 @@
+// Function for generating UUID for analytics
+// Source: https://stackoverflow.com/a/2117523
+function uuidv4() {
+    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    )
+}
+
 // Function for generating the donate popup
 function createPopup(tab, source, data) {
     var popupURL = 'popup.html?&source=' + source + '&data=' + encodeURIComponent(JSON.stringify(data))
@@ -47,6 +55,7 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo) {
 
 // Welcome page
 chrome.storage.local.get(function (data) {
+    // Set version
     if (data.version) {
         if (!(data.version === chrome.runtime.getManifest().version)) {
             chrome.tabs.create({ 'url': chrome.extension.getURL('welcome.html') })
@@ -58,6 +67,16 @@ chrome.storage.local.get(function (data) {
         chrome.tabs.create({ 'url': chrome.extension.getURL('welcome.html') })
         chrome.storage.local.set({
             version: chrome.runtime.getManifest().version
+        })
+    }
+})
+
+// Generate UUID for analytics
+chrome.storage.local.get(function (data) {
+    if (!data.uuid) {
+        var uuid = uuidv4()
+        chrome.storage.local.set({
+            uuid: uuid
         })
     }
 })

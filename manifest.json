@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "Tipjar - Support sites and creators",
 	"short_name": "Tipjar",
-	"version": "1.0",
+	"version": "1.1",
 	"author": "Corbin Davenport",
 	"description": "Give money to your favorite sites and creators in one click",
 	"homepage_url": "https://github.com/corbindavenport",
@@ -11,7 +11,6 @@
 		"*://*/*",
 		"storage"
 	],
-	"content_security_policy": "script-src 'self' https://www.google-analytics.com; object-src 'self'",
 	"background": {
 		"scripts": [
 			"js/background.js"
